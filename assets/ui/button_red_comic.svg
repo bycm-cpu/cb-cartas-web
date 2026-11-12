@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120">
+<defs><filter id="g" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".6 .42" numOctaves="2" seed="3"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3 1.55"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="l" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".4 .7" numOctaves="2" seed="10"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 -1.9"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>
+<path d="M17 9 L300 6 L591 10 L575 109 L290 113 L3 110Z" fill="#050908" stroke="#050908" stroke-width="9" stroke-linejoin="round"/>
+<path d="M23 13 L300 11 L583 13 L568 100 L290 103 L14 101Z" fill="#c4150e" stroke="#080b09" stroke-width="5" stroke-linejoin="round"/>
+<path d="M23 13 L300 11 L583 13 L568 100 L290 103 L14 101Z" fill="#000" opacity="0.22" filter="url(#g)"/>
+<path d="M23 13 L300 11 L583 13 L568 100 L290 103 L14 101Z" fill="#fff6c8" opacity="0.18" filter="url(#l)"/>
+</svg>

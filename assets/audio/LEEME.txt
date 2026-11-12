@@ -1,0 +1,6 @@
+Audio de Capitán Barato
+-----------------------
+Música de fondo: clash-of-steel-loop.ogg (tema "Clash of Steel Loop", aportado por el autor del proyecto; convertido de mp3 a ogg para que pese menos
+y se repita sin cortes). Se activa en www/js/audio/manifest.js (music). Si ponés music: null vuelve a sonar la música generada por el juego.
+Los efectos de sonido siguen siendo los generados por el propio juego (js/audio/synth.js). Para usar tus propios efectos, copialos en esta carpeta y
+escribí su nombre en el manifest (sfx: { throw: 'assets/audio/dado.mp3' }).

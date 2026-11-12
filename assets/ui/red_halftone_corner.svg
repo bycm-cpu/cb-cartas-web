@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="260" viewBox="0 0 500 260">
+<defs><pattern id="redDots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.5" fill="#650d10" opacity=".8"/></pattern></defs>
+<path d="M0 70 L500 0 V260 H0Z" fill="#d9232a"/><path d="M0 70 L500 0 V260 H0Z" fill="url(#redDots)"/>
+</svg>

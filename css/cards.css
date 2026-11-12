@@ -1,0 +1,487 @@
+/* ===== Carta: estética retro/pulp (papel envejecido, contornos marcados, colores limitados) =====
+   Se dimensiona con --cw (ancho de la carta); todo lo interno va en `em`.
+   Variantes: .v-full  .v-hand  .v-reveal  .v-mini  .v-back
+   Identidad por clase (como en el PDF): .t-urbano .t-guerrero .t-tecnologico .t-legado
+                                          .t-mistico .t-espacial .t-alterado .t-naturaleza .t-humano */
+
+.card {
+  --cw: calc(var(--u) * 30);
+  --acc: #c9291f;
+  --acc-ink: #fff3d0;
+  --paperc: #ecd9ab;
+  --txt: #16120d;
+  --chip: #16120d;
+  --chip-txt: #f6ead0;
+  --line: #16120d;
+  width: var(--cw);
+  aspect-ratio: 5 / 7.25;
+  font-size: calc(var(--cw) / 22);
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  padding: 0.38em;
+  border-radius: 1em;
+  background: var(--line);
+  color: var(--txt);
+  font-family: var(--font-body);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.card .c-paper {
+  height: 100%;
+  border-radius: 0.72em;
+  background-color: var(--paperc);
+  background-image: var(--grain), radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.35), transparent 55%);
+  background-blend-mode: multiply, normal;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 0 0.16em rgba(0, 0, 0, 0.35);
+}
+
+.card .c-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.5em 0.8em 0;
+  font-size: 1.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+  line-height: 1;
+  white-space: nowrap;
+}
+.card .c-no { flex: none; }
+.card .c-class {
+  min-width: 0;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .c-name.nl2 { --ns: 0.85; }
+.card .c-name.nl3 { --ns: 0.72; }
+.card .c-name {
+  position: relative;
+  margin: 0.35em -0.6em 0.4em;
+  padding: 0.45em 1.4em 0.5em 1.3em;
+  background: var(--acc);
+  color: var(--acc-ink);
+  transform: rotate(-2deg);
+  box-shadow: 0 0.18em 0 rgba(0, 0, 0, 0.45);
+  min-height: 3.2em;
+  display: flex;
+  align-items: center;
+  clip-path: polygon(0 0, 100% 6%, 97% 100%, 0 94%);
+}
+.card .c-name span {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: calc(var(--nf, 3.5) * 1em * var(--ns, 1));
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: #ffd54a;
+  -webkit-text-stroke: 0.04em #16120d;
+  paint-order: stroke fill;
+  text-shadow: 0.06em 0.07em 0 #16120d;
+  text-wrap: balance;
+  display: block;
+  transform: skewX(-6deg);
+}
+
+.card .c-art {
+  position: relative;
+  margin: 0 0.7em;
+  border: 0.22em solid var(--line);
+  aspect-ratio: 2 / 1.02;
+  background: repeating-linear-gradient(45deg, #cdbd96 0 0.5em, #bfae84 0.5em 1em);
+  overflow: hidden;
+  flex: none;
+  box-shadow: 0.2em 0.25em 0 rgba(0, 0, 0, 0.35);
+}
+.card .c-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.08) contrast(1.05);
+}
+.card .c-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(0, 0, 0, 0.18) 0.5px, transparent 0.8px) 0 0 / 3px 3px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.card .c-art .ph {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding: 0.5em;
+}
+.card .c-art.noart .ph {
+  display: flex;
+}
+
+.card .c-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4em 0.35em;
+  padding: 0.7em 0.7em 0.2em;
+}
+.card .stat {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  background: var(--chip);
+  color: var(--chip-txt);
+  border-radius: 2em;
+  padding: 0.18em 0.55em 0.18em 0.18em;
+  min-width: 0;
+  position: relative;
+}
+.card .stat .ico {
+  width: 2.7em;
+  height: 2.7em;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--sc);
+  color: #16120d;
+  flex: none;
+  fill: currentColor;
+  stroke: none;
+}
+.card .stat .ico .ln {
+  stroke: var(--sc);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+.card .stat b {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.4em;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  flex: 1;
+  text-align: center;
+}
+.card .stat .lbl {
+  display: none;
+}
+.card .stat.up b {
+  color: #9be36f;
+}
+.card .stat.down b {
+  color: #ff8a78;
+}
+.card .stat.hl {
+  background: #16120d;
+  box-shadow: 0 0 0 0.22em var(--yellow), 0 0 1.2em 0.2em rgba(244, 184, 26, 0.55);
+  transform: scale(1.07);
+  z-index: 1;
+}
+.s-fue { --sc: var(--a-fue); }
+.s-int { --sc: var(--a-int); }
+.s-vel { --sc: var(--a-vel); }
+.s-res { --sc: var(--a-res); }
+.s-agi { --sc: var(--a-agi); }
+.s-car { --sc: var(--a-car); }
+
+.card .c-ability {
+  margin: 0.55em 0.7em 0;
+  padding: 0.4em 0.6em 0.5em;
+  background: rgba(255, 255, 255, 0.35);
+  border: 0.14em solid var(--line);
+  border-radius: 0.4em;
+  position: relative;
+}
+.card .c-ability h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 2.3em;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.card .c-ability p {
+  margin: 0.35em 0 0;
+  font-size: 1.9em;
+  line-height: 1.12;
+  font-weight: 500;
+}
+.card .c-active {
+  margin: auto 0.7em 0.7em;
+  display: flex;
+  gap: 0.5em;
+  align-items: flex-start;
+  padding: 0.35em 0.5em;
+  background: var(--acc);
+  color: var(--acc-ink);
+  border-radius: 0.35em;
+  box-shadow: 0.12em 0.14em 0 rgba(0, 0, 0, 0.4);
+}
+.card .c-active .star {
+  width: 2.2em;
+  height: 2.2em;
+  flex: none;
+  color: #ffd54a;
+}
+.card .c-active h5 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.1em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.card .c-active p {
+  margin: 0.2em 0 0;
+  font-size: 1.8em;
+  line-height: 1.12;
+}
+.card .c-active.mini {
+  align-items: center;
+  font-size: 1.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: auto;
+  line-height: 1;
+}
+.card .c-active.mini .star {
+  width: 1.3em;
+  height: 1.3em;
+}
+.card .c-obra {
+  font-size: 1.6em;
+  font-style: italic;
+  opacity: 0.7;
+  padding: 0 0.8em 0.6em;
+}
+.card .c-fxtag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  background: var(--acc);
+  color: var(--acc-ink);
+  font-size: 1.55em;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15em 0.6em 0.15em 0.3em;
+  line-height: 1;
+  z-index: 2;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+}
+.card .c-fxtag .ico { width: 1.2em; height: 1.2em; color: #ffd54a; }
+.card .c-badge {
+  position: absolute;
+  top: -0.9em;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--yellow);
+  color: #16120d;
+  border: 0.2em solid #16120d;
+  font-family: var(--font-display);
+  font-size: 2.6em;
+  padding: 0.05em 0.6em;
+  white-space: nowrap;
+  z-index: 3;
+  box-shadow: 0.15em 0.15em 0 rgba(0, 0, 0, 0.5);
+}
+.card .c-zoom {
+  position: absolute;
+  right: -0.5em;
+  top: -0.7em;
+  width: 3.6em;
+  height: 3.6em;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #16120d;
+  border: 0.22em solid #16120d;
+  padding: 0.55em;
+  z-index: 4;
+  box-shadow: 0.15em 0.2em 0 rgba(0, 0, 0, 0.5);
+}
+.card .c-zoom .ico { width: 100%; height: 100%; }
+
+/* ---- Variantes de tamaño ---- */
+.card.v-hand { --cw: calc(var(--u) * 29.5); }
+.card.v-hand .c-top { font-size: 1.6em; padding-top: 0.4em; }
+.card.v-hand .c-name { min-height: 3.6em; margin-top: 0.25em; }
+.card.v-hand .c-name { --nf: 3.1; }
+.card.v-hand .c-ability, .card.v-reveal .c-ability { padding: 0.3em 0.5em; margin-top: 0.4em; }
+.card.v-hand .c-ability h4, .card.v-reveal .c-ability h4 { font-size: 2em; white-space: nowrap; overflow: hidden; line-height: 1.35; padding-top: 0.08em; text-overflow: ellipsis; }
+.card.v-hand .c-art, .card.v-reveal .c-art { aspect-ratio: 2 / 0.92; }
+.card.v-hand .c-stats, .card.v-reveal .c-stats { padding-top: 0.5em; }
+
+.card.v-reveal { --cw: calc(var(--u) * 33); }
+.card.v-reveal .c-name { --nf: 3.3; }
+
+.card.v-full { --cw: min(calc(var(--u) * 84), 400px); }
+.card.v-full:not(.nv) .c-top { font-size: 1.5em; }
+.card.v-full:not(.nv) .c-stats { grid-template-columns: repeat(3, 1fr); gap: 0.55em; }
+.card.v-full:not(.nv) .c-name { --nf: 3.4; }
+.card.v-full:not(.nv) .c-ability { margin-top: 0.7em; }
+.card.v-full:not(.nv) .stat .lbl {
+  display: block;
+  font-style: normal;
+  font-size: 1.4em;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: absolute;
+  top: -1.3em;
+  left: 0.6em;
+  color: var(--txt);
+  opacity: 0.8;
+}
+.card.v-full:not(.nv) .c-stats { padding-top: 1.5em; row-gap: 1.7em; }
+.card.v-full:not(.nv) { aspect-ratio: auto; }
+
+/* Mini: listas de Reserva / descarte / colección */
+.card.v-mini { --cw: calc(var(--u) * 28); aspect-ratio: auto; padding: 0.35em; }
+.card.v-mini .c-name { margin: 0 0 0.35em; min-height: 4.6em; padding: 0.3em 0.5em; clip-path: none; transform: none; justify-content: center; text-align: center; }
+.card.v-mini .c-name { --nf: 2.3; }
+.card.v-mini .c-name span { transform: none; text-align: center; width: 100%; }
+.card.v-mini .c-art { margin: 0 0.3em; flex: none; width: calc(100% - 0.6em); }
+.card.v-mini .c-mini-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35em 0.6em 0.1em;
+  font-size: 1.7em;
+  font-weight: 700;
+  color: var(--chip-txt);
+}
+.card.v-mini .star { width: 1.2em; height: 1.2em; color: #ffd54a; }
+.card.v-mini { display: flex; flex-direction: column; background: #16120d; }
+.card.v-mini .c-name { background: var(--acc); }
+
+.card.v-back { --cw: calc(var(--u) * 14); aspect-ratio: 63 / 88; padding: 0; background: #0a3d1c url('../assets/brand/card-back.webp') center / 100% 100% no-repeat; border-radius: 4.5% / 3.2%; border: 0; box-shadow: 0 .15em .5em rgba(0,0,0,.45); overflow: hidden; }
+.card.v-back .back-in { display: none; }
+
+.card.sel {
+  transform: translateY(-1.8em) scale(1.05);
+  box-shadow: 0 0 0 0.45em var(--yellow), 0.5em 1.2em 0 rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+.card.dim { opacity: 0.45; filter: grayscale(0.5); }
+.card.locked { box-shadow: 0 0 0 0.35em #16120d; }
+
+/* ---- Identidades por clase ---- */
+.t-urbano { --acc: #c9291f; --paperc: #ecd9ab; }
+.t-guerrero { --acc: #b4531a; --paperc: #f0c98c; }
+.t-tecnologico { --acc: #1b78a8; --paperc: #b9d8e6; --chip: #10263a; }
+.t-legado {
+  --acc: #a07a12;
+  --acc-ink: #fff3d0;
+  --paperc: #2b261e;
+  --txt: #f3e6c4;
+  --line: #a07a12;
+  --chip: #0f0d0a;
+}
+.t-legado .c-paper { box-shadow: inset 0 0 0 0.2em #0f0d0a, inset 0 0 0 0.4em #a07a12; }
+.t-legado .c-ability { background: rgba(255, 255, 255, 0.08); border-color: #a07a12; }
+.t-mistico { --acc: #6b3a98; --paperc: #d9c3ea; }
+.t-espacial {
+  --acc: #3646a8;
+  --paperc: #1f2750;
+  --txt: #f3e6c4;
+  --chip: #0b1028;
+}
+.t-espacial .c-ability { background: rgba(255, 255, 255, 0.08); }
+.t-alterado { --acc: #3f7f2f; --paperc: #cfe0a6; }
+.t-naturaleza { --acc: #207a50; --paperc: #bfe3c4; }
+.t-humano { --acc: #6e5336; --paperc: #e4d2ae; }
+.t-legado .c-top, .t-espacial .c-top { opacity: 0.9; }
+
+/* =====================  PLANTILLA ÚNICA DE CARTA (.nv)  =====================
+   Una sola estructura para todas las cartas y todos los contextos; sólo cambia el tamaño (--cw).
+   Proporción física de TCG 63:88. Zonas (alto): A encabezado 12 · B ilustración 43 · D habilidad 30 · E pie 8.
+   Todos los valores de diseño están acá, en variables. Ninguna regla es específica de un personaje. */
+.card.nv {
+  --ratio: 63 / 88;
+  --frame: .8em;            /* grosor del marco de papel */
+  --radius: 1em;            /* esquinas de la carta */
+  --line-w: .16em;          /* grosor de contornos */
+  --ink: #16120d; --paper: #efe2bd; --navy: #17202e; --gold: #f3d98a;
+  aspect-ratio: var(--ratio);
+  padding: var(--frame);
+  border-radius: var(--radius);
+  background: var(--grain), var(--paper);
+  box-shadow: 0 0 0 .14em var(--ink), 0 .25em .5em rgba(0, 0, 0, .45);
+  display: block; min-height: 0; box-sizing: border-box;
+}
+.card.nv .c-paper {
+  /* La carta interior se dibuja SIEMPRE a tamaño de diseño (630 px de ancho) y se escala con transform (--k = ancho real / 630,
+     lo calcula ui/fit.js). Así la tipografía no cae bajo el tamaño mínimo de fuente del navegador/WebView ni se desborda en cartas chicas. */
+  position: absolute; left: 3.6364%; top: 2.6033%; width: 584.18px; height: 834.18px; box-sizing: border-box;
+  transform: scale(var(--k, .2)); transform-origin: 0 0; font-size: 28.636px;
+  display: grid; grid-template-rows: 12fr 43fr 30fr 8fr; overflow: hidden;
+  background: var(--navy); border-radius: .45em; box-shadow: 0 0 0 var(--line-w) var(--ink);
+}
+.card.nv .c-paper::after { content: ''; position: absolute; inset: 0; border: var(--line-w) solid var(--ink); border-radius: .45em; pointer-events: none; z-index: 6; }
+/* A · Encabezado */
+.card.nv .c-head { position: static; width: auto; display: grid; grid-template-columns: 4.3em minmax(0, 1fr) 6.2em; align-items: stretch; background: var(--acc); border-bottom: var(--line-w) solid var(--ink); min-height: 0; }
+.card.nv .c-no { position: static; display: grid; place-items: center; font-family: var(--font-body); font-weight: 800; font-size: 1em; letter-spacing: .02em; white-space: nowrap; color: var(--acc-ink); background: rgba(0, 0, 0, .28); border-right: var(--line-w) solid var(--ink); text-shadow: none; line-height: 1; }
+.card.nv .c-name { margin: 0; padding: 0 .5em; min-height: 0; display: flex; align-items: center; justify-content: center; text-align: center; transform: none; clip-path: none; background: none; --ns: 1; }
+.card.nv .c-name span { display: block; font-family: var(--font-display); font-style: italic; font-weight: 400; text-transform: uppercase; color: var(--gold); text-shadow: .07em .07em 0 var(--ink); font-size: calc(var(--nf, 1.8) * 1em); line-height: .92; letter-spacing: .01em; transform: none; overflow-wrap: normal; }
+.card.nv .c-name.nl2 { --ns: .8; } .card.nv .c-name.nl3 { --ns: .66; }
+.card.nv .c-tag { position: static; width: auto; max-width: none; display: grid; place-items: center; padding: 0 .35em; background: var(--ink); border-left: var(--line-w) solid var(--ink); clip-path: none; }
+.card.nv .c-tag span { font-size: .72em; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; color: var(--gold); text-align: center; line-height: 1.1; white-space: normal; overflow: visible; }
+/* B · Ilustración + C · Atributos superpuestos al borde derecho */
+.card.nv .c-art { position: relative; inset: auto; width: auto; height: auto; margin: 0; border: 0; aspect-ratio: auto; box-shadow: none; background: #222a38; overflow: hidden; border-bottom: var(--line-w) solid var(--ink); }
+.card.nv .c-art img { width: 100%; height: 100%; object-fit: cover; object-position: var(--art-pos, 50% 25%); filter: none; }
+.card.nv .c-art::after { background: radial-gradient(rgba(0, 0, 0, .12) .5px, transparent .8px) 0 0 / 3px 3px; mix-blend-mode: multiply; }
+.card.nv .c-stats { position: absolute; right: .45em; top: .45em; bottom: .45em; width: 4.6em; z-index: 4; display: flex; flex-direction: column; padding: .12em; gap: 0; background: rgba(16, 13, 10, .92); border: var(--line-w) solid var(--ink); border-radius: .5em; box-shadow: none; }
+.card.nv .stat { flex: 1 1 0; min-height: 0; display: flex; align-items: center; gap: .2em; padding: 0 .12em; background: none; border-radius: .35em; position: relative; }
+.card.nv .stat + .stat { border-top: .07em solid rgba(255, 255, 255, .1); }
+.card.nv .stat .ico { width: auto; height: 84%; aspect-ratio: 1; padding: .2em; border-radius: 50%; flex: none; }
+.card.nv .stat b { flex: 1; text-align: center; font-family: var(--font-display); font-weight: 400; font-size: 1.75em; line-height: 1; color: #f6ead0; text-shadow: none; }
+.card.nv .stat.hl { background: rgba(243, 217, 138, .28); box-shadow: 0 0 0 .14em var(--gold); z-index: 2; transform: none; }
+.card.nv .stat.hl b { color: #ffe27a; }
+.card.nv .stat.up b { color: #9be36f; } .card.nv .stat.down b { color: #ff8a78; }
+/* D · Habilidad */
+.card.nv .c-abil { position: relative; inset: auto; height: auto; margin: .5em .55em .2em; padding: .9em .7em .3em; display: flex; flex-direction: column; justify-content: flex-start; background: var(--paper); background-image: var(--grain); border: var(--line-w) solid var(--ink); border-radius: .3em; box-shadow: inset 0 0 0 .12em rgba(160, 40, 30, .45); color: var(--ink); overflow: visible; min-height: 0; }
+.card.nv .c-tab { position: absolute; top: 0; left: .6em; transform: translateY(-62%); background: var(--ink); color: var(--gold); font-size: .95em; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: .12em .8em .12em .6em; clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); line-height: 1.2; }
+.card.nv .c-abil h4 { margin: 0; padding: 0; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: calc(1.5em * var(--hs, 1)); line-height: 1.05; letter-spacing: .02em; white-space: normal; display: block; overflow: visible; }
+.card.nv .c-abil p { margin: .25em 0 0; padding: 0; font-family: var(--font-body); font-weight: 600; font-size: var(--tf, 1.1em); line-height: 1.14; }
+.card.nv .c-abil.none h4 { display: none; }
+/* E · Pie de carta */
+.card.nv .c-foot { display: flex; align-items: center; gap: .5em; padding: 0 .6em; min-height: 0; color: #e9ddc0; }
+.card.nv .c-obra { flex: 1; min-width: 0; font-size: .92em; font-weight: 600; line-height: 1.1; letter-spacing: .01em; display: block; margin: 0; padding: 0; color: #e9ddc0; }
+.card.nv .c-obra b { color: var(--gold); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-right: .3em; }
+.card.nv .c-star { position: static; flex: none; width: 2em; height: 2em; display: grid; place-items: center; background: var(--gold); color: var(--ink); border-radius: 50%; clip-path: none; }
+.card.nv .c-star .ico, .card.nv .c-star svg { width: 66%; height: 66%; }
+.card.nv .c-badge, .card.nv .c-zoom { z-index: 10; }
+.card.nv .c-fxtag { display: none; }
+.card.v-full { --cw: min(calc(var(--u) * 84), 400px); }
+.card.v-mini { --cw: calc(var(--u) * 28); }
+.card.v-back { aspect-ratio: 63 / 88; }
+.detail-extra { color: #f2e6c6; font-size: .95rem; line-height: 1.3; margin: 10px 4px 0; }
+.detail-extra h5 { margin: 0 0 2px; color: #f3d98a; font-size: 1rem; }
+.detail-extra p { margin: 0 0 6px; }
+.card.nv .c-paper { grid-template-columns: minmax(0, 1fr); }
+.card.nv .c-paper > * { min-width: 0; }
+.card.nv.t-legado { --acc: #6b4f0f; }

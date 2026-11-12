@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240">
+<path d="M12 8 H388 Q394 8 394 16 V224 Q394 232 386 232 H14 Q6 232 6 224 V18 Q6 8 12 8Z" fill="#071b15" stroke="#050d0b" stroke-width="12"/>
+<path d="M18 18 H382 Q384 18 384 22 V218 Q384 222 380 222 H20 Q16 222 16 218 V22 Q16 18 18 18Z" fill="none" stroke="#f7ca35" stroke-width="4"/>
+<path d="M22 25 H378" stroke="#fff0b8" stroke-width="1.5" opacity=".45"/>
+</svg>
